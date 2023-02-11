@@ -1,0 +1,22 @@
+{
+  "FFRPG.AbilityStr": "Strength",
+  "FFRPG.AbilityCon": "Constitution",
+  "FFRPG.AbilityDex": "Dexterity",
+  "FFRPG.AbilityInt": "Intelligence",
+  "FFRPG.AbilityWis": "Wisdom",
+  "FFRPG.AbilityCha": "Charisma",
+
+  "FFRPG.AbilityStrAbbr": "str",
+  "FFRPG.AbilityConAbbr": "con",
+  "FFRPG.AbilityDexAbbr": "dex",
+  "FFRPG.AbilityIntAbbr": "int",
+  "FFRPG.AbilityWisAbbr": "wis",
+  "FFRPG.AbilityChaAbbr": "cha",
+
+  "FFRPG.EffectCreate": "Create Effect",
+  "FFRPG.EffectToggle": "Toggle Effect",
+  "FFRPG.EffectEdit": "Edit Effect",
+  "FFRPG.EffectDelete": "Delete Effect",
+
+  "FFRPG.Add": "Add"
+}
