@@ -3,15 +3,279 @@
     "types": ["character", "npc"],
     "templates": {
       "base": {
-        "health": {
+        "hp": {
+          "value": 100,
+          "min": 0,
+          "max": 100
+        },
+        "mp": {
           "value": 10,
           "min": 0,
           "max": 10
         },
-        "power": {
-          "value": 5,
-          "min": 0,
-          "max": 5
+        "level": {
+          "value": 1,
+          "min": 1,
+          "max": 99
+        },
+        "movement": {
+          "value": 20
+        },
+        "elemResist": {
+          "physical": {
+            "value": 1
+          },
+          "magic": {
+            "value": 1
+          },
+          "healing": {
+            "value": 1
+          },
+          "fire": {
+            "value": 1
+          },
+          "ice": {
+            "value": 1
+          },
+          "lightning": {
+            "value": 1
+          },
+          "earth": {
+            "value": 1
+          },
+          "wind": {
+            "value": 1
+          },
+          "water": {
+            "value": 1
+          },
+          "light": {
+            "value": 1
+          },
+          "dark": {
+            "value": 1
+          },
+          "gravity": {
+            "value": 1
+          }
+        },
+        "statusResist": {
+          "blind": {
+            "value": 0
+          },
+          "silence": {
+            "value": 0
+          },
+          "poison": {
+            "value": 0
+          },
+          "confuse": {
+            "value": 0
+          },
+          "breakPower": {
+            "value": 0
+          },
+          "breakMagic": {
+            "value": 0
+          },
+          "breakArmor": {
+            "value": 0
+          },
+          "breakMental": {
+            "value": 0
+          },
+          "doom": {
+            "value": 0
+          },
+          "slow": {
+            "value": 0
+          },
+          "stop": {
+            "value": 0
+          },
+          "petrify": {
+            "value": 0
+          },
+          "sleep": {
+            "value": 0
+          },
+          "terror": {
+            "value": 0
+          },
+          "charm": {
+            "value": 0
+          },
+          "grapple": {
+            "value": 0
+          },
+          "restrain": {
+            "value": 0
+          },
+          "prone": {
+            "value": 0
+          },
+          "mini": {
+            "value": 0
+          },
+          "toad": {
+            "value": 0
+          },
+          "zombie": {
+            "value": 0
+          },
+          "curse": {
+            "value": 0
+          },
+          "berserk": {
+            "value": 0
+          }
+        },
+        "status": {
+          "blind": {
+            "isActive": false,
+            "duration": 0
+          },
+          "silence": {
+            "isActive": false,
+            "duration": 0
+          },
+          "poison": {
+            "isActive": false,
+            "duration": 0
+          },
+          "confuse": {
+            "isActive": false,
+            "duration": 0
+          },
+          "breakPower": {
+            "isActive": false,
+            "duration": 0
+          },
+          "breakMagic": {
+            "isActive": false,
+            "duration": 0
+          },
+          "breakArmor": {
+            "isActive": false,
+            "duration": 0
+          },
+          "breakMental": {
+            "isActive": false,
+            "duration": 0
+          },
+          "doom": {
+            "isActive": false,
+            "duration": 0
+          },
+          "slow": {
+            "isActive": false,
+            "duration": 0
+          },
+          "stop": {
+            "isActive": false,
+            "duration": 0
+          },
+          "petrify": {
+            "isActive": false,
+            "duration": 0
+          },
+          "sleep": {
+            "isActive": false,
+            "duration": 0
+          },
+          "terror": {
+            "isActive": false,
+            "duration": 0
+          },
+          "charm": {
+            "isActive": false,
+            "duration": 0
+          },
+          "grapple": {
+            "isActive": false,
+            "duration": 0
+          },
+          "restrain": {
+            "isActive": false,
+            "duration": 0
+          },
+          "prone": {
+            "isActive": false,
+            "duration": 0
+          },
+          "mini": {
+            "isActive": false,
+            "duration": 0
+          },
+          "toad": {
+            "isActive": false,
+            "duration": 0
+          },
+          "zombie": {
+            "isActive": false,
+            "duration": 0
+          },
+          "curse": {
+            "isActive": false,
+            "duration": 0
+          },
+          "berserk": {
+            "isActive": false,
+            "duration": 0
+          },
+          "haste": {
+            "isActive": false,
+            "duration": 0
+          },
+          "vanish": {
+            "isActive": false,
+            "duration": 0
+          },
+          "regen": {
+            "isActive": false,
+            "duration": 0
+          },
+          "protect": {
+            "isActive": false,
+            "duration": 0
+          },
+          "shell": {
+            "isActive": false,
+            "duration": 0
+          },
+          "reflect": {
+            "isActive": false,
+            "duration": 0
+          },
+          "infusion": {
+            "isActive": false,
+            "duration": 0,
+            "element": ""
+          },
+          "nullFire": {
+            "isActive": false,
+            "duration": 0
+          },
+          "nullBlizzard": {
+            "isActive": false,
+            "duration": 0
+          },
+          "nullThunder": {
+            "isActive": false,
+            "duration": 0
+          },
+          "nullStone": {
+            "isActive": false,
+            "duration": 0
+          },
+          "nullAero": {
+            "isActive": false,
+            "duration": 0
+          },
+          "nullWater": {
+            "isActive": false,
+            "duration": 0
+          }
         },
         "biography": ""
       }
@@ -19,28 +283,114 @@
     "character": {
       "templates": ["base"],
       "attributes": {
-        "level": {
-          "value": 1
+        "race": {
+          "value": ""
+        },
+        "background": {
+          "value": ""
+        },
+        "limit": {
+          "value": 0,
+          "min": 0,
+          "max": 100
+        },
+        "xp": {
+          "value": 0
         }
       },
       "abilities": {
         "str": {
           "value": 10
         },
-        "dex": {
+        "mag": {
           "value": 10
         },
-        "con": {
+        "acc": {
           "value": 10
         },
-        "int": {
+        "agi": {
           "value": 10
         },
-        "wis": {
+        "luck": {
           "value": 10
+        }
+      },
+      "skills": {
+        "athletics": {
+          "value": 0,
+          "ability": "str"
         },
-        "cha": {
-          "value": 10
+        "arcana": {
+          "value": 0,
+          "ability": "mag"
+        },
+        "perception": {
+          "value": 0,
+          "ability": "acc"
+        },
+        "acrobatics": {
+          "value": 0,
+          "ability": "agi"
+        },
+        "toughness": {
+          "value": 0,
+          "ability": "hp"
+        },
+        "composure": {
+          "value": 0,
+          "ability": "mp"
+        },
+        "crafting": {
+          "value": 0,
+          "ability": null
+        },
+        "deception": {
+          "value": 0,
+          "ability": null
+        },
+        "diplomacy": {
+          "value": 0,
+          "ability": null
+        },
+        "insight": {
+          "value": 0,
+          "ability": null
+        },
+        "intimidation": {
+          "value": 0,
+          "ability": null
+        },
+        "investigation": {
+          "value": 0,
+          "ability": null
+        },
+        "lore": {
+          "value": 0,
+          "ability": null
+        },
+        "nature": {
+          "value": 0,
+          "ability": null
+        },
+        "performance": {
+          "value": 0,
+          "ability": null
+        },
+        "stealth": {
+          "value": 0,
+          "ability": null
+        },
+        "survival": {
+          "value": 0,
+          "ability": null
+        },
+        "technology": {
+          "value": 0,
+          "ability": null
+        },
+        "thievery": {
+          "value": 0,
+          "ability": null
         }
       }
     },
@@ -60,7 +410,7 @@
       "templates": ["base"],
       "quantity": 1,
       "weight": 0,
-      "formula": "d20 + @str.mod + ceil(@lvl / 2)"
+      "formula": "d20 + @str + ceil(@lvl / 2)"
     },
     "feature": {
       "templates": ["base"]
