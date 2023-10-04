@@ -11,8 +11,8 @@ export class FFRPGActorSheet extends ActorSheet {
     return mergeObject(super.defaultOptions, {
       classes: ["ffrpg", "sheet", "actor"],
       template: "systems/ffrpg/templates/actor/actor-sheet.html",
-      width: 800,
-      height: 800,
+      width: 600,
+      height: 600,
       tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "features" }]
     });
   }
@@ -67,14 +67,10 @@ export class FFRPGActorSheet extends ActorSheet {
    * @return {undefined}
    */
   _prepareCharacterData(context) {
-    // Format labels for ability scores and skills
-    for (let [key, ability] of Object.entries(context.system.abilities)) {
-      ability.label = game.i18n.localize(CONFIG.FFRPG.abilities[key]) ?? key;
+    // Handle ability scores.
+    for (let [k, v] of Object.entries(context.system.abilities)) {
+      v.label = game.i18n.localize(CONFIG.FFRPG.abilities[k]) ?? k;
     }
-    for (let [key, skill] of Object.entries(context.system.skills)) {
-      skill.label = game.i18n.localize(CONFIG.FFRPG.skills[key]) ?? key;
-    }
-    context.system.delay.label = game.i18n.localize(CONFIG.FFRPG.misc.delay);
   }
 
   /**

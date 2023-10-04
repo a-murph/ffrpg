@@ -48,29 +48,11 @@ export class FFRPGActor extends Actor {
     // Make modifications to data here. For example:
     const systemData = actorData.system;
 
-    // Calculate Delay based on Agility
-    const actorAgi = systemData.abilities.agi.value;
-    let actorDelay = 26;
-    if (actorAgi <= 1) actorDelay = 26       // Agility should never be lower than 1, but lower values are included as a failsafe
-    else if (actorAgi === 2) actorDelay = 24
-    else if (actorAgi === 3) actorDelay = 22
-    else if (actorAgi === 4) actorDelay = 20
-    else if (actorAgi <= 6) actorDelay = 16  // Agility is 5-6
-    else if (actorAgi <= 8) actorDelay = 15  // Agility is 7-8
-    else if (actorAgi <= 10) actorDelay = 14 // Agility is 9-10
-    else if (actorAgi <= 13) actorDelay = 13 // Agility is 11-13
-    else if (actorAgi <= 16) actorDelay = 12 // Agility is 14-16
-    else if (actorAgi <= 19) actorDelay = 11 // Agility is 17-19
-    else if (actorAgi <= 22) actorDelay = 10 // Agility is 19-22
-    else if (actorAgi <= 28) actorDelay = 9  // Agility is 23-28
-    else if (actorAgi <= 34) actorDelay = 8  // Agility is 29-34
-    else if (actorAgi <= 43) actorDelay = 7  // Agility is 35-43
-    else if (actorAgi <= 59) actorDelay = 6  // Agility is 44-59
-    else if (actorAgi <= 77) actorDelay = 5  // Agility is 60-77
-    else if (actorAgi <= 98) actorDelay = 4  // Agility is 78-98
-    else if (actorAgi >= 99) actorDelay = 3  // Agility should never be higher than 99, but higher calues are invluded as a failsafe
-
-    systemData.delay = { "value": actorDelay };
+    // Loop through ability scores, and add their modifiers to our sheet output.
+    for (let [key, ability] of Object.entries(systemData.abilities)) {
+      // Calculate the modifier using d20 rules.
+      ability.mod = Math.floor((ability.value - 10) / 2);
+    }
   }
 
   /**
@@ -112,8 +94,8 @@ export class FFRPGActor extends Actor {
     }
 
     // Add level for easier access, or fall back to 0.
-    if (data.level) {
-      data.lvl = data.level.value ?? 0;
+    if (data.attributes.level) {
+      data.lvl = data.attributes.level.value ?? 0;
     }
   }
 
