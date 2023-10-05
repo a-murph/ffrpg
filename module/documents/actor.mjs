@@ -48,11 +48,14 @@ export class FFRPGActor extends Actor {
     // Make modifications to data here. For example:
     const systemData = actorData.system;
 
-    // Loop through ability scores, and add their modifiers to our sheet output.
-    for (let [key, ability] of Object.entries(systemData.abilities)) {
+    // Loop through stat scores, and add their modifiers to our sheet output.
+    for (let [key, stat] of Object.entries(systemData.stats)) {
       // Calculate the modifier using d20 rules.
-      ability.mod = Math.floor((ability.value - 10) / 2);
+      stat.mod = Math.floor((stat.value - 10) / 2);
     }
+
+    // Set value of Delay based on Agility
+    systemData.attributes.delay.value = this._prepareDelayValue(systemData);
   }
 
   /**
@@ -63,7 +66,52 @@ export class FFRPGActor extends Actor {
 
     // Make modifications to data here. For example:
     const systemData = actorData.system;
-    systemData.xp = (systemData.cr * systemData.cr) * 100;
+    systemData.xp = (systemData.attributes.level.value * systemData.attributes.level.value) * 5;
+  }
+
+  _prepareDelayValue(systemData) {
+    if (systemData.attributes.delay.override) {
+      return systemData.attributes.delay.override;
+    }
+
+    const agiValue = systemData.stats.agi.value;
+    if (agiValue >= 99) {
+      return 3;
+    } else if (agiValue >= 78) {
+      return 4;
+    } else if (agiValue >= 60) {
+      return 5;
+    } else if (agiValue >= 44) {
+      return 6;
+    } else if (agiValue >= 35) {
+      return 7;
+    } else if (agiValue >= 29) {
+      return 8;
+    } else if (agiValue >= 23) {
+      return 9;
+    } else if (agiValue >= 20) {
+      return 10;
+    } else if (agiValue >= 17) {
+      return 11;
+    } else if (agiValue >= 14) {
+      return 12;
+    } else if (agiValue >= 11) {
+      return 13;
+    } else if (agiValue >= 9) {
+      return 14;
+    } else if (agiValue >= 7) {
+      return 15;
+    } else if (agiValue >= 5) {
+      return 16;
+    } else if (agiValue >= 4) {
+      return 20;
+    } else if (agiValue >= 3) {
+      return 22;
+    } else if (agiValue >= 2) {
+      return 24;
+    } else {
+      return 26;
+    }
   }
 
   /**
@@ -87,15 +135,15 @@ export class FFRPGActor extends Actor {
 
     // Copy the ability scores to the top level, so that rolls can use
     // formulas like `@str.mod + 4`.
-    if (data.abilities) {
-      for (let [k, v] of Object.entries(data.abilities)) {
+    if (data.stats) {
+      for (let [k, v] of Object.entries(data.stats)) {
         data[k] = foundry.utils.deepClone(v);
       }
     }
 
-    // Add level for easier access, or fall back to 0.
+    // Add level for easier access, or fall back to 1.
     if (data.attributes.level) {
-      data.lvl = data.attributes.level.value ?? 0;
+      data.lvl = data.attributes.level.value ?? 1;
     }
   }
 

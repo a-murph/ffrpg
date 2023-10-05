@@ -67,9 +67,9 @@ export class FFRPGActorSheet extends ActorSheet {
    * @return {undefined}
    */
   _prepareCharacterData(context) {
-    // Handle ability scores.
-    for (let [k, v] of Object.entries(context.system.abilities)) {
-      v.label = game.i18n.localize(CONFIG.FFRPG.abilities[k]) ?? k;
+    // Handle stat scores.
+    for (let [k, v] of Object.entries(context.system.stats)) {
+      v.label = game.i18n.localize(CONFIG.FFRPG.stats[k]) ?? k;
     }
   }
 
@@ -153,7 +153,7 @@ export class FFRPGActorSheet extends ActorSheet {
     // Active Effect management
     html.find(".effect-control").click(ev => onManageActiveEffect(ev, this.actor));
 
-    // Rollable abilities.
+    // Rollable stats.
     html.find('.rollable').click(this._onRoll.bind(this));
 
     // Drag events for macros.
@@ -215,7 +215,7 @@ export class FFRPGActorSheet extends ActorSheet {
 
     // Handle rolls that supply the formula directly.
     if (dataset.roll) {
-      let label = dataset.label ? `[ability] ${dataset.label}` : '';
+      let label = dataset.label ? `[stat] ${dataset.label}` : '';
       let roll = new Roll(dataset.roll, this.actor.getRollData());
       roll.toMessage({
         speaker: ChatMessage.getSpeaker({ actor: this.actor }),

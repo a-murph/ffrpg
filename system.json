@@ -4,9 +4,8 @@
   "description": "The FFRPG system for FoundryVTT, using Asacolips's Boilerplate module as a base.",
   "version": "0.0.1",
   "compatibility": {
-    "minimum": 10,
-    "verified": "10.287",
-    "maximum": 10
+    "minimum": 11,
+    "verified": "11.313"
   },
   "authors": [
     {
