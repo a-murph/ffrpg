@@ -8,12 +8,14 @@ import { FFRPGItemSheet } from "./sheets/item-sheet.mjs";
 import { preloadHandlebarsTemplates } from "./helpers/templates.mjs";
 import { FFRPG } from "./helpers/config.mjs";
 
+// Import combat classes
+import FFRPGCombat from "./combat.mjs";
+
 /* -------------------------------------------- */
 /*  Init Hook                                   */
 /* -------------------------------------------- */
 
-Hooks.once('init', async function() {
-
+Hooks.once('init', async () => {
   // Add utility classes to the global game object so that they're more easily
   // accessible in global contexts.
   game.ffrpg = {
@@ -24,19 +26,20 @@ Hooks.once('init', async function() {
 
   // Add custom constants for configuration.
   CONFIG.FFRPG = FFRPG;
-
+  
+  // Define custom Document classes
+  CONFIG.Actor.documentClass = FFRPGActor;
+  CONFIG.Item.documentClass = FFRPGItem;
+  CONFIG.Combat.documentClass = FFRPGCombat;
+  
   /**
    * Set an initiative formula for the system
    * @type {String}
    */
   CONFIG.Combat.initiative = {
-    formula: "1d20 + @abilities.dex.mod",
+    formula: "1d4 * @attributes.delay.value",
     decimals: 2
   };
-
-  // Define custom Document classes
-  CONFIG.Actor.documentClass = FFRPGActor;
-  CONFIG.Item.documentClass = FFRPGItem;
 
   // Register sheet application classes
   Actors.unregisterSheet("core", ActorSheet);
@@ -53,7 +56,7 @@ Hooks.once('init', async function() {
 /* -------------------------------------------- */
 
 // If you need to add Handlebars helpers, here are a few useful examples:
-Handlebars.registerHelper('concat', function() {
+Handlebars.registerHelper('concat', () => {
   var outStr = '';
   for (var arg in arguments) {
     if (typeof arguments[arg] != 'object') {
@@ -63,7 +66,7 @@ Handlebars.registerHelper('concat', function() {
   return outStr;
 });
 
-Handlebars.registerHelper('toLowerCase', function(str) {
+Handlebars.registerHelper('toLowerCase', () => {
   return str.toLowerCase();
 });
 
@@ -71,7 +74,7 @@ Handlebars.registerHelper('toLowerCase', function(str) {
 /*  Ready Hook                                  */
 /* -------------------------------------------- */
 
-Hooks.once("ready", async function() {
+Hooks.once("ready", async () => {
   // Wait to register hotbar drop hook on ready so that modules could register earlier if they want to
   Hooks.on("hotbarDrop", (bar, data, slot) => createItemMacro(data, slot));
 });
