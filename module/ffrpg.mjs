@@ -10,6 +10,7 @@ import { FFRPG } from "./helpers/config.mjs";
 
 // Import combat classes
 import FFRPGCombat from "./combat.mjs";
+import FFRPGCombatTracker from "./combat-tracker.mjs";
 
 /* -------------------------------------------- */
 /*  Init Hook                                   */
@@ -31,6 +32,7 @@ Hooks.once('init', async () => {
   CONFIG.Actor.documentClass = FFRPGActor;
   CONFIG.Item.documentClass = FFRPGItem;
   CONFIG.Combat.documentClass = FFRPGCombat;
+  CONFIG.ui.combat = FFRPGCombatTracker;
   
   /**
    * Set an initiative formula for the system

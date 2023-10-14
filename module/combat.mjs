@@ -66,7 +66,7 @@ export default class FFRPGCombat extends Combat {
       updates.push({_id: combatant._id, initiative: combatant.initiative - cooldownReduction});
     });
 
-    // Update multiple combatants
+    // Update cooldown of all combatants
     await this.updateEmbeddedDocuments("Combatant", updates);
 
     // Sort turn order by new init values, then set the current turn to whoever's at the top of the list
